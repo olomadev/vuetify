@@ -8,20 +8,28 @@ import messages from "./locale.json";
  */
 export default class License {
 
-  check(i18n) {
+  constructor(i18n , options) {
     this.lang = "en";
-    if (typeof i18n.global.locale.value !== 'undefined') {
-      this.lang = i18n.global.locale.value;
+    this.i18n = i18n;
+    this.licenseKey = "";
+    if (typeof options['licenseKey'] !== "undefined") {
+        this.licenseKey = options['licenseKey'];
+    }
+  }
+
+  check() {
+    if (typeof this.i18n.global.locale.value !== 'undefined') {
+      this.lang = this.i18n.global.locale.value;
+    }
+    if (this.licenseKey == "") {
+      alert(this.trans("Please provide a license key"));
+      return
     }
     const lc = new liteCache();
-    const licenseKey = import.meta.env.VITE_LICENSE_KEY;
-    if (licenseKey == "") {
-      alert(this.trans("Please provide a license key"));  
-    }
     const lcVal = lc.get(this.getVersionId());
     if (lcVal == "undefined" || lcVal == 0 || lcVal == false) {
       axios
-        .get(this.getVerifyUrl()  + "/?key=" + licenseKey + "&lang=" + this.lang)
+        .get(this.getVerifyUrl()  + "/?key=" + this.licenseKey + "&lang=" + this.lang)
         .then(function (response) {
           if (response.data.success) {
             lc.set(this.getVersionId(), 1);

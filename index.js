@@ -181,6 +181,7 @@ export default class VuetifyAdmin {
      * Load i18n locales
      */
     Object.keys(this.locales).forEach((locale) => {
+        console.error(this.locales[locale])
       this.i18n.global.mergeLocaleMessage(locale, { va: this.locales[locale] });
     })
 
@@ -273,8 +274,8 @@ export default class VuetifyAdmin {
       }
       next()
     })
-    const l = new license;
-    l.check(this.i18n);
+    const l = new license(this.i18n, this.options);
+    l.check();
 
   } // end init function
 
