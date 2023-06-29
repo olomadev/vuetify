@@ -25,6 +25,7 @@ export default class License {
       alert(this.trans("Please provide a license key"));
       return
     }
+    let Self = this
     const lc = new liteCache();
     const lcVal = lc.get(this.getVersionId());
     if (lcVal == undefined || lcVal == "undefined" || lcVal == 0) {
@@ -32,7 +33,7 @@ export default class License {
         .get(this.getVerifyUrl()  + "/?key=" + this.licenseKey + "&lang=" + this.lang)
         .then(function (response) {
           if (response.data.success) {
-            lc.set(this.getVersionId(), 1);
+            lc.set(Self.getVersionId(), 1);
           } else {
             alert(response.data.error);
           }
