@@ -390,4 +390,3 @@ export default class VuetifyAdmin {
 
 } // end class
 
-module.exports = VuetifyAdmin
