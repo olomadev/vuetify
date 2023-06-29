@@ -1,6 +1,6 @@
 {
   "name": "oloma-va",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Oloma is a tool that allows to you quickiy and easily develop modern web panels using Vue.js/Vuetify and Php.",
   "main": "index.js",
   "repository": {
@@ -23,7 +23,6 @@
   "homepage": "https://oloma.dev",
   "dependencies": {
     "lodash": "4.17.21",
-    "litecache": "^0.1.1",
     "axios": "^1.3.4"
   }
 }

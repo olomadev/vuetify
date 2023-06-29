@@ -1,6 +1,5 @@
 
 import axios from "axios";
-import liteCache from "litecache";
 import messages from "./locale.json";
 
 /**
@@ -11,29 +10,41 @@ export default class License {
   constructor(i18n , options) {
     this.lang = "en";
     this.i18n = i18n;
-    this.licenseKey = "";
-    if (typeof options['licenseKey'] !== "undefined") {
-        this.licenseKey = options['licenseKey'];
-    }
+    this.options = options;
+    
+    console.error(import.meta.env);
+    // console.error(import.meta.env.PROD);
+
   }
 
   check() {
-    if (typeof this.i18n.global.locale.value !== 'undefined') {
-      this.lang = this.i18n.global.locale.value;
+    if (typeof this.options['env'] == "undefined") {
+      alert(this.trans("Please set an environment variable"));
+      return;   
     }
-    if (this.licenseKey == "") {
+    const envArray = ['prod', 'local', 'dev', 'test'];
+    if (! envArray.includes(this.options['env'])) {
+      alert(this.trans("This software can only be used with these environment variables"));
+      return; 
+    }
+    if (this.options['env'] == "prod") {
+      return;
+    }
+    if (typeof this.options['licenseKey'] !== "undefined" || this.options['licenseKey'] == "") {
       alert(this.trans("Please provide a license key"));
       return
     }
-    let Self = this
-    const lc = new liteCache();
-    const lcVal = lc.get(this.getVersionId());
-    if (lcVal == undefined || lcVal == "undefined" || lcVal == 0) {
+    const lVal = localStorage.getItem(this.getVersionId());
+    let Self = this;
+    if (!lVal) {
+      if (typeof Self.i18n.global.locale.value !== 'undefined') {
+        Self.lang = Self.i18n.global.locale.value;
+      }
       axios
-        .get(this.getVerifyUrl()  + "/?key=" + this.licenseKey + "&lang=" + this.lang)
+        .get(this.getVerifyUrl()  + "/?key=" + licenseKey + "&lang=" + Self.lang)
         .then(function (response) {
           if (response.data.success) {
-            lc.set(Self.getVersionId(), 1);
+            localStorage.setItem(Self.getVersionId(), 1);
           } else {
             alert(response.data.error);
           }

@@ -1,8 +1,12 @@
 {
   "en": {
-    "Please provide a license key" : "Please enter a license key in your .env file"
+    "This software can only be used with these environment variables" : "This software can only be used with these environment variables: prod, local, dev, test", 
+    "Please provide a license key" : "Please enter a license key in your .env file",
+    "Please set an environment variable" : "Please set an environment variable",
   },
   "tr": {
-    "Please provide a license key" : "Lütfen .env dosyanıza bir lisans anahtarı girin"
+    "This software can only be used with these environment variables" : "Bu yazılım yalnızca şu ortam değişkenleriyle kullanılabilir: prod, local, dev, test", 
+    "Please provide a license key" : "Lütfen .env dosyanıza bir lisans anahtarı girin",
+    "Please set an environment variable" : "Lütfen bir ortam değişkeni ayarlayın"
   }
 }
