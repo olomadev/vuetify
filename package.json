@@ -1,0 +1,29 @@
+{
+  "name": "oloma-va",
+  "version": "1.0.0",
+  "description": "Oloma is a tool that allows to you quickiy and easily develop modern web panels using Vue.js/Vuetify and Php.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/olomadev/oloma-va.git"
+  },
+  "keywords": [
+    "vuetify",
+    "vue.js",
+    "admin",
+    "backend",
+    "panel",
+    "spa"
+  ],
+  "author": "Oloma",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/olomadev/oloma-va/issues"
+  },
+  "homepage": "https://oloma.dev",
+  "dependencies": {
+    "lodash": "4.17.21",
+    "litecache": "^0.1.1",
+    "axios": "^1.3.4"
+  }
+}

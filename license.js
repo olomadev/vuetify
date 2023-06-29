@@ -1,6 +1,7 @@
 
 import axios from "axios";
 import liteCache from "litecache";
+import messages from "./locale.json";
 
 /**
  * Oloma (c) 2023
@@ -8,19 +9,19 @@ import liteCache from "litecache";
 export default class License {
 
   check(i18n) {
-    let lang = "en";
+    this.lang = "en";
     if (typeof i18n.global.locale.value !== 'undefined') {
-      lang = i18n.global.locale.value;
+      this.lang = i18n.global.locale.value;
     }
     const lc = new liteCache();
     const licenseKey = import.meta.env.VITE_LICENSE_KEY;
     if (licenseKey == "") {
-      alert("Please provide a license key");  
+      alert(this.trans("Please provide a license key"));  
     }
     const lcVal = lc.get(this.getVersionId());
     if (lcVal == "undefined" || lcVal == 0 || lcVal == false) {
       axios
-        .get(this.getVerifyUrl()  + "/?key=" + licenseKey + "&lang=" + lang)
+        .get(this.getVerifyUrl()  + "/?key=" + licenseKey + "&lang=" + this.lang)
         .then(function (response) {
           if (response.data.success) {
             lc.set(this.getVersionId(), 1);
@@ -29,6 +30,13 @@ export default class License {
           }
       });
     }
+  }
+
+  trans(text) {
+    if (typeof messages[this.lang][text] == "undefined") {
+      return text
+    }
+    return messages[this.lang][text];
   }
 
   getVerifyUrl() {
