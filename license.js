@@ -27,7 +27,7 @@ export default class License {
     }
     const lc = new liteCache();
     const lcVal = lc.get(this.getVersionId());
-    if (lcVal == "undefined" || lcVal == 0 || lcVal == false) {
+    if (lcVal == undefined || lcVal == "undefined" || lcVal == 0) {
       axios
         .get(this.getVerifyUrl()  + "/?key=" + this.licenseKey + "&lang=" + this.lang)
         .then(function (response) {
