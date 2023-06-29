@@ -11,23 +11,20 @@ export default class License {
     this.lang = "en";
     this.i18n = i18n;
     this.options = options;
-    
-    console.error(import.meta.env);
-    // console.error(import.meta.env.PROD);
-
+    this.env = import.meta.env.MODE;
   }
 
   check() {
-    if (typeof this.options['env'] == "undefined") {
+    if (typeof this.env == "undefined" || this.env == "") {
       alert(this.trans("Please set an environment variable"));
       return;   
     }
     const envArray = ['prod', 'local', 'dev', 'test'];
-    if (! envArray.includes(this.options['env'])) {
+    if (! envArray.includes(this.env)) {
       alert(this.trans("This software can only be used with these environment variables"));
       return; 
     }
-    if (this.options['env'] == "prod") {
+    if (this.env == "prod") {
       return;
     }
     if (typeof this.options['licenseKey'] !== "undefined" || this.options['licenseKey'] == "") {
