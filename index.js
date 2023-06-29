@@ -14,7 +14,7 @@ import auth from "vuetify-admin/src/store/auth"
 import guest from "vuetify-admin/src/store/guest"
 import api from "vuetify-admin/src/store/api"
 import axios from "axios"
-import license from "./license"
+import license from "./license.js"
 
 import storeResource from "vuetify-admin/src/store/resource"
 import routeResource from "vuetify-admin/src/router/resource"
