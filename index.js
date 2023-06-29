@@ -176,15 +176,7 @@ export default class VuetifyAdmin {
    * Init to admin properties
    */
   init() {
-
-    /**
-     * Load i18n locales
-     */
-    Object.keys(this.locales).forEach((locale) => {
-        console.error(this.locales[locale])
-      this.i18n.global.mergeLocaleMessage(locale, { va: this.locales[locale] });
-    })
-
+    
     /**
      * Auth store & api dispatcher module injection
      */
