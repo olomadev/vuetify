@@ -21,6 +21,10 @@ import routeResource from "vuetify-admin/src/router/resource"
 
 export default class VuetifyAdmin {
 
+  constructor(meta) {
+    this.meta = meta
+  }
+
   setOptions({
     app,
     router,
@@ -45,7 +49,7 @@ export default class VuetifyAdmin {
     this.router = router
     this.store = store
     this.i18n = i18n
-    this.apiUrl = apiUrl
+    this.apiUrl = this.meta.VITE_API_URL
     this.downloadUrl = downloadUrl
     this.title = title
     this.routes = routes
@@ -266,7 +270,7 @@ export default class VuetifyAdmin {
       }
       next()
     })
-    const l = new license(this.i18n, this.options);
+    const l = new license(this.i18n, this.meta);
     l.check();
 
   } // end init function

@@ -7,27 +7,27 @@ import messages from "./locale.json";
  */
 export default class License {
 
-  constructor(i18n , options) {
+  constructor(i18n , meta) {
     this.lang = "en";
     this.i18n = i18n;
     this.options = options;
-    this.env = import.meta.env.MODE;
+    this.meta = meta;
   }
 
   check() {
-    if (typeof this.env == "undefined" || this.env == "") {
+    if (typeof this.meta.env.MODE == "undefined" || this.meta.env.MODE == "") {
       alert(this.trans("Please set an environment variable"));
       return;   
     }
     const envArray = ['prod', 'local', 'dev', 'test'];
-    if (! envArray.includes(this.env)) {
+    if (! envArray.includes(this.meta.env.MODE)) {
       alert(this.trans("This software can only be used with these environment variables"));
       return; 
     }
-    if (this.env == "prod") {
+    if (this.meta.env.MODE == "prod" && this.meta.env.PROD) {
       return;
     }
-    if (typeof this.options['licenseKey'] !== "undefined" || this.options['licenseKey'] == "") {
+    if (typeof this.meta.env.VITE_LICENSE_KEY !== "undefined" || this.meta.env.VITE_LICENSE_KEY == "") {
       alert(this.trans("Please provide a license key"));
       return
     }
