@@ -29,7 +29,7 @@ export default class License {
     if (this.meta.env.MODE == "prod" && this.meta.env.PROD) {
       return;
     }
-    if (typeof this.meta.env.VITE_LICENSE_KEY !== "undefined" || this.meta.env.VITE_LICENSE_KEY == "") {
+    if (typeof this.meta.env.VITE_LICENSE_KEY == "undefined" || this.meta.env.VITE_LICENSE_KEY == "") {
       alert(this.trans("Please provide a license key"));
       return
     }
@@ -37,7 +37,7 @@ export default class License {
     let Self = this;
     if (!lVal) {
       axios
-        .get(this.getVerifyUrl()  + "/?key=" + licenseKey + "&lang=" + this.lang)
+        .get(this.getVerifyUrl()  + "/?key=" + this.meta.env.VITE_LICENSE_KEY + "&lang=" + this.lang)
         .then(function (response) {
           if (response.data.success) {
             localStorage.setItem(Self.getVersionId(), 1);
