@@ -10,7 +10,6 @@ export default class License {
   constructor(i18n , meta) {
     this.lang = "en";
     this.i18n = i18n;
-    this.options = options;
     this.meta = meta;
     if (typeof i18n.global.locale.value !== "undefined") {
       this.lang = i18n.global.locale.value;
