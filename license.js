@@ -12,6 +12,9 @@ export default class License {
     this.i18n = i18n;
     this.options = options;
     this.meta = meta;
+    if (typeof i18n.global.locale.value !== "undefined") {
+      this.lang = i18n.global.locale.value;
+    }
   }
 
   check() {
@@ -34,11 +37,8 @@ export default class License {
     const lVal = localStorage.getItem(this.getVersionId());
     let Self = this;
     if (!lVal) {
-      if (typeof Self.i18n.global.locale.value !== 'undefined') {
-        Self.lang = Self.i18n.global.locale.value;
-      }
       axios
-        .get(this.getVerifyUrl()  + "/?key=" + licenseKey + "&lang=" + Self.lang)
+        .get(this.getVerifyUrl()  + "/?key=" + licenseKey + "&lang=" + this.lang)
         .then(function (response) {
           if (response.data.success) {
             localStorage.setItem(Self.getVersionId(), 1);
