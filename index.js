@@ -49,7 +49,7 @@ export default class VuetifyAdmin {
     this.router = router
     this.store = store
     this.i18n = i18n
-    this.apiUrl = this.meta.VITE_API_URL
+    this.apiUrl = this.meta.env.VITE_API_URL
     this.downloadUrl = downloadUrl
     this.title = title
     this.routes = routes
