@@ -7,6 +7,13 @@ Oloma is a tool that allows to you quickly and easily develop modern web panels 
 
 <a href="https://tr.oloma.dev/docs/index.html">https://oloma.dev/docs/index.html</a>
 
+<tab>
+<title>List|Template|Script</title>
+<content>
+![Users List](/images/users-list.png)
+</content>
+</tab>
+
 ## title {.tabset .tabset-fade}
 content above tabbed region.
 
