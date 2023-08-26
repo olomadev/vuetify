@@ -28,6 +28,7 @@ export default class VuetifyAdmin {
   setOptions({
     app,
     router,
+    resources,
     store,
     i18n,
     apiUrl,
@@ -61,6 +62,10 @@ export default class VuetifyAdmin {
     this.canAction = canAction
     this.http = http
     this.saved = false // global form saved object
+
+    if (resources) {
+      this.setResources(resources);
+    }
   }
 
   setResources(resources) {
