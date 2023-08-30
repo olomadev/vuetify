@@ -31,12 +31,10 @@ export default class VuetifyAdmin {
     resources,
     store,
     i18n,
-    apiUrl,
     downloadUrl,
     title,
     routes,
     locales,
-    translations,
     authProvider,
     dataProvider,
     options,
@@ -55,7 +53,7 @@ export default class VuetifyAdmin {
     this.title = title
     this.routes = routes
     this.locales = locales
-    this.translations = translations
+    this.translations = this.meta.env.VITE_SUPPORTED_LOCALES
     this.authProvider = authProvider
     this.dataProvider = dataProvider
     this.options = options || {}
