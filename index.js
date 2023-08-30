@@ -21,8 +21,8 @@ import routeResource from "vuetify-admin/src/router/resource"
 
 export default class VuetifyAdmin {
 
-  constructor(meta) {
-    this.meta = meta
+  constructor(env) {
+    this.env = env
   }
 
   setOptions({
@@ -41,6 +41,16 @@ export default class VuetifyAdmin {
     canAction,
     http
   }) {
+    const supportedLocales = this.env.VITE_SUPPORTED_LOCALES;
+    let translations = [];
+    if (supportedLocales 
+      && Object.prototype.toString.call(supportedLocales) === "[object String]") 
+    {
+      const split = supportedLocales.split(",");
+      if (Array.isArray(split)) {
+        translations = split;
+      }
+    }
     /**
      * Options properties
      */
@@ -48,12 +58,12 @@ export default class VuetifyAdmin {
     this.router = router
     this.store = store
     this.i18n = i18n
-    this.apiUrl = this.meta.env.VITE_API_URL
+    this.apiUrl = this.env.VITE_API_URL
     this.downloadUrl = downloadUrl
     this.title = title
     this.routes = routes
     this.locales = locales
-    this.translations = this.meta.env.VITE_SUPPORTED_LOCALES
+    this.translations = translations
     this.authProvider = authProvider
     this.dataProvider = dataProvider
     this.options = options || {}
@@ -273,7 +283,7 @@ export default class VuetifyAdmin {
       }
       next()
     })
-    const l = new license(this.i18n, this.meta);
+    const l = new license(this.i18n, this.env);
     l.check();
 
   } // end init function

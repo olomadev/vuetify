@@ -7,29 +7,29 @@ import messages from "./locale.json";
  */
 export default class License {
 
-  constructor(i18n , meta) {
+  constructor(i18n, env) {
+    this.env = env;
     this.lang = "en";
     this.i18n = i18n;
-    this.meta = meta;
     if (typeof i18n.global.locale.value !== "undefined") {
       this.lang = i18n.global.locale.value;
     }
   }
 
   check() {
-    if (typeof this.meta.env.MODE == "undefined" || this.meta.env.MODE == "") {
+    if (typeof this.env.MODE == "undefined" || this.env.MODE == "") {
       alert(this.trans("Please set an environment variable"));
       return;   
     }
     const envArray = ['prod', 'local', 'dev', 'test'];
-    if (! envArray.includes(this.meta.env.MODE)) {
+    if (! envArray.includes(this.env.MODE)) {
       alert(this.trans("This software can only be used with these environment variables"));
       return; 
     }
-    if (this.meta.env.MODE == "prod" && this.meta.env.PROD) {
+    if (this.env.MODE == "prod" && this.env.PROD) {
       return;
     }
-    if (typeof this.meta.env.VITE_LICENSE_KEY == "undefined" || this.meta.env.VITE_LICENSE_KEY == "") {
+    if (typeof this.env.VITE_LICENSE_KEY == "undefined" || this.env.VITE_LICENSE_KEY == "") {
       alert(this.trans("Please provide a license key"));
       return
     }
@@ -37,7 +37,7 @@ export default class License {
     let Self = this;
     if (!lVal) {
       axios
-        .get(this.getVerifyUrl()  + "/?key=" + this.meta.env.VITE_LICENSE_KEY + "&lang=" + this.lang)
+        .get(this.getVerifyUrl()  + "/?key=" + this.env.VITE_LICENSE_KEY + "&lang=" + this.lang)
         .then(function (response) {
           if (response.data.success) {
             localStorage.setItem(Self.getVersionId(), 1);
@@ -64,4 +64,3 @@ export default class License {
   }
 
 }
-
