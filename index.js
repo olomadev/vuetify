@@ -397,12 +397,21 @@ export default class VuetifyAdmin {
   confirm(title, message) {
     return this.store.dispatch("messages/confirm", { title, message })
   }
+
   /**
    * Show global snackbar message
    */
   message(type, message) {
     return this.store.commit("messages/show", { type: type.toLowerCase(), message: message });
   }
+
+  /**
+   * Refresh the current page
+   */
+  refresh(resource) {
+    return this.store.dispatch("api/refresh", resource);
+  }
+
 
 } // end class
 
