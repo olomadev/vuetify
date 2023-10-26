@@ -329,10 +329,13 @@ export default class VuetifyAdmin {
   * Get label source, humanize it if not found
   */
   getSourceLabel(resource, source)  {
-    let key = `resources.${resource}.fields.${source}`;
-    return this.i18n.global.te(key)
-      ? this.i18n.global.t(key)
-      : upperFirst(lowerCase(source.replace(".", " ")));
+    if (resource && source) {
+        let key = `resources.${resource}.fields.${source}`;
+        return this.i18n.global.te(key)
+          ? this.i18n.global.t(key)
+          : upperFirst(lowerCase(source.replace(".", " ")));    
+    }
+    return null
   }
 
   /**
