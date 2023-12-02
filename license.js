@@ -44,7 +44,7 @@ export default class License {
         .get(this.getVerifyUrl()  + "/?key=" + this.env.VITE_LICENSE_KEY + "&lang=" + this.lang)
         .then(function (response) {
           if (! response) {
-            error = "Oloma configuration error: " + this.trans("Failed to connect to license activation server please make sure you are connected to the internet");
+            error = "Oloma configuration error: " + Self.trans("Failed to connect to license activation server please make sure you are connected to the internet");
             alert(error)
           }
           if (response && 
