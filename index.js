@@ -2,8 +2,7 @@
  * Oloma Dev.
  * [oloma-va] <https://github.com/olomadev/oloma-va>
  *
- * Copyright (c) 2022-2012, Oloma Software.
- * Licensed under the MIT License.
+ * Copyright (c) 2022-2024, Oloma Software.
  */
 import upperFirst from "lodash/upperFirst"
 import lowerCase from "lodash/lowerCase"
@@ -13,7 +12,6 @@ import messages from "vuetify-admin/src/store/messages"
 import auth from "vuetify-admin/src/store/auth"
 import guest from "vuetify-admin/src/store/guest"
 import api from "vuetify-admin/src/store/api"
-import axios from "axios"
 import license from "./license.js"
 
 import storeResource from "vuetify-admin/src/store/resource"
@@ -42,6 +40,9 @@ export default class VuetifyAdmin {
     canAction,
     http
   }) {
+    if (typeof this.env.VITE_SUPPORTED_LOCALES == "undefined") {
+        throw new Error("Oloma configuration error: .env.local or .env.prod environment file missed in your project !");
+    }
     const supportedLocales = this.env.VITE_SUPPORTED_LOCALES;
     let translations = [];
     if (supportedLocales 
@@ -286,7 +287,10 @@ export default class VuetifyAdmin {
       next()
     })
     const l = new license(this.i18n, this.env);
-    l.check();
+    const checkError = l.check();
+    if (checkError) {
+      alert(checkError);
+    };
 
   } // end init function
 

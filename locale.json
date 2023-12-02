@@ -2,11 +2,13 @@
   "en": {
     "This software can only be used with these environment variables" : "This software can only be used with these environment variables: prod, local, dev, test", 
     "Please provide a license key" : "Please enter a license key in your .env file",
-    "Please set an environment variable" : "Please set an environment variable"
+    "Please set an environment variable" : "Please set an environment variable",
+    "Failed to connect to license activation server please make sure you are connected to the internet" : "Failed to connect to license activation server please make sure you are connected to the internet"
   },
   "tr": {
     "This software can only be used with these environment variables" : "Bu yazılım yalnızca şu ortam değişkenleriyle kullanılabilir: prod, local, dev, test", 
     "Please provide a license key" : "Lütfen .env dosyanıza bir lisans anahtarı girin",
-    "Please set an environment variable" : "Lütfen bir ortam değişkeni ayarlayın"
+    "Please set an environment variable" : "Lütfen bir ortam değişkeni ayarlayın",
+    "Failed to connect to license activation server please make sure you are connected to the internet" : "Lisans etkinleştirme sunucusuna bağlanılamadı, lütfen internete bağlı olduğunuzdan emin olun"
   }
 }

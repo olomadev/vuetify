@@ -2,8 +2,11 @@
 import axios from "axios";
 import messages from "./locale.json";
 
-/**
- * Oloma (c) 2023
+/*!
+ * Oloma Dev.
+ * [oloma-va] <https://github.com/olomadev/oloma-va>
+ *
+ * Copyright (c) 2022-2024, Oloma Software.
  */
 export default class License {
 
@@ -17,21 +20,22 @@ export default class License {
   }
 
   check() {
+    let error = null;
     if (typeof this.env.MODE == "undefined" || this.env.MODE == "") {
-      alert(this.trans("Please set an environment variable"));
-      return;   
+      error = "Oloma configuration error: " + this.trans("Please set an environment variable");
+      return error;
     }
     const envArray = ['prod', 'local', 'dev', 'test'];
     if (! envArray.includes(this.env.MODE)) {
-      alert(this.trans("This software can only be used with these environment variables"));
-      return; 
+      error = "Oloma configuration error: " + this.trans("This software can only be used with these environment variables");
+      return error;
     }
     if (this.env.MODE == "prod" && this.env.PROD) {
-      return;
+      return null;
     }
     if (typeof this.env.VITE_LICENSE_KEY == "undefined" || this.env.VITE_LICENSE_KEY == "") {
-      alert(this.trans("Please provide a license key"));
-      return
+      error = "Oloma configuration error: " + this.trans("Please provide a license key");
+      return error;
     }
     const lVal = localStorage.getItem(this.getVersionId());
     let Self = this;
@@ -39,10 +43,19 @@ export default class License {
       axios
         .get(this.getVerifyUrl()  + "/?key=" + this.env.VITE_LICENSE_KEY + "&lang=" + this.lang)
         .then(function (response) {
-          if (response.data.success) {
+          if (! response) {
+            error = "Oloma configuration error: " + this.trans("Failed to connect to license activation server please make sure you are connected to the internet");
+            alert(error)
+          }
+          if (response && 
+            response["data"] && 
+            response["data"]["success"]) {
             localStorage.setItem(Self.getVersionId(), 1);
-          } else {
-            alert(response.data.error);
+          } else if (response && 
+            response["data"] && 
+            response["data"]["error"]) {
+            error = "Oloma configuration error: " + response.data.error;
+            alert(error)
           }
       });
     }
