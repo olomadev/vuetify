@@ -287,10 +287,7 @@ export default class VuetifyAdmin {
       next()
     })
     const l = new license(this.i18n, this.env);
-    const checkError = l.check();
-    if (checkError) {
-      alert(checkError);
-    };
+    l.check();
 
   } // end init function
 

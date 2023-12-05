@@ -23,19 +23,22 @@ export default class License {
     let error = null;
     if (typeof this.env.MODE == "undefined" || this.env.MODE == "") {
       error = "Oloma configuration error: " + this.trans("Please set an environment variable");
-      return error;
+      alert(error)
+      return;
     }
     const envArray = ['prod', 'local', 'dev', 'test'];
     if (! envArray.includes(this.env.MODE)) {
       error = "Oloma configuration error: " + this.trans("This software can only be used with these environment variables");
-      return error;
+      alert(error)
+      return;
     }
     if (this.env.MODE == "prod" && this.env.PROD) {
       return null;
     }
     if (typeof this.env.VITE_LICENSE_KEY == "undefined" || this.env.VITE_LICENSE_KEY == "") {
       error = "Oloma configuration error: " + this.trans("Please provide a license key");
-      return error;
+      alert(error)
+      return;
     }
     const lVal = localStorage.getItem(this.getVersionId());
     let Self = this;
@@ -44,8 +47,9 @@ export default class License {
         .get(this.getVerifyUrl()  + "/?key=" + this.env.VITE_LICENSE_KEY + "&lang=" + this.lang)
         .then(function (response) {
           if (! response) {
-            error = "Oloma configuration error: " + Self.trans("Failed to connect to license activation server please make sure you are connected to the internet");
-            alert(error)
+            // let's show connection error in background
+            console.error("Oloma configuration error: " + Self.trans("Failed to connect to license activation server please make sure you are connected to the internet"));
+            return;
           }
           if (response && 
             response["data"] && 
@@ -59,6 +63,7 @@ export default class License {
           }
       });
     }
+    return error;
   }
 
   trans(text) {
