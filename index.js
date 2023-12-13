@@ -29,6 +29,7 @@ export default class VuetifyAdmin {
     resources,
     store,
     i18n,
+    dashboard,
     downloadUrl,
     readFileUrl,
     title,
@@ -60,6 +61,7 @@ export default class VuetifyAdmin {
     this.router = router
     this.store = store
     this.i18n = i18n
+    this.dashboard = dashboard
     this.apiUrl = this.env.VITE_API_URL
     this.downloadUrl = downloadUrl
     this.readFileUrl = readFileUrl
@@ -274,7 +276,7 @@ export default class VuetifyAdmin {
          * Redirect to dashboard route by default if public or root path
          */
         if (to.path === "/" || !to.meta.authenticated) {
-          return next({ name: "dashboard" })
+          return next({ name: this.dashboard })
         }
         return next()
       }
