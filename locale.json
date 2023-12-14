@@ -1,14 +1,14 @@
 {
   "en": {
-    "This software can only be used with these environment variables" : "This software can only be used with these environment variables: prod, local, dev, test", 
+    "Oloma configuration error: " : "Oloma configuration error: ",
     "Please provide a license key" : "Please enter a license key in your .env file",
-    "Please set an environment variable" : "Please set an environment variable",
+    "Meta key undefined": "Oloma ol:domain-verify meta verification tag is not present in the html header section of your page. You must put the relevant key on your website, otherwise Oloma verification bots may disable your account",
     "Failed to connect to license activation server please make sure you are connected to the internet" : "Failed to connect to license activation server please make sure you are connected to the internet"
   },
   "tr": {
-    "This software can only be used with these environment variables" : "Bu yazılım yalnızca şu ortam değişkenleriyle kullanılabilir: prod, local, dev, test", 
+    "Oloma configuration error: " : "Oloma konfigürasyon hatası: ",
     "Please provide a license key" : "Lütfen .env dosyanıza bir lisans anahtarı girin",
-    "Please set an environment variable" : "Lütfen bir ortam değişkeni ayarlayın",
+    "Meta key undefined": "Oloma ol:domain-verify meta doğrulama etiketi, sayfanızın html başlık bölümünde mevcut değil. İlgili anahtarı web sitenize koymalısınız, aksi takdirde Oloma doğrulama botları hesabınızı devre dışı bırakabilir",
     "Failed to connect to license activation server please make sure you are connected to the internet" : "Lisans etkinleştirme sunucusuna bağlanılamadı, lütfen internete bağlı olduğunuzdan emin olun"
   }
 }
