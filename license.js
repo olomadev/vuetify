@@ -20,7 +20,7 @@ export default class License {
     }
   }
 
-  async check() {
+  check() {
     let error = null;
     if (typeof this.env.VITE_LICENSE_KEY == "undefined" || this.env.VITE_LICENSE_KEY == "") {
       error = this.trans("Oloma configuration error") + this.trans("Please provide a license key");
@@ -74,14 +74,15 @@ export default class License {
     return "a676cfe6-4ee4-4221-aad6-4b9c5b2dd21c";
   }
 
-  async sendRequest() {
+  sendRequest() {
+    const Self = this;
     axios
       .get(this.getVerifyUrl()  + "/?key=" + this.env.VITE_LICENSE_KEY + "&lang=" + this.lang)
       .then(function (response) {
         if (! response) {
           // let's show connection error in background
           // 
-          console.error(this.trans("Oloma configuration error") + Self.trans("Failed to connect to license activation server please make sure you are connected to the internet"));
+          console.error(Self.trans("Oloma configuration error") + Self.trans("Failed to connect to license activation server please make sure you are connected to the internet"));
           return;
         }
         if (response && 
@@ -91,7 +92,7 @@ export default class License {
         } else if (response && 
           response["data"] && 
           response["data"]["error"]) {
-          error = this.trans("Oloma configuration error") + response.data.error;
+          error = Self.trans("Oloma configuration error") + response.data.error;
           alert(error)
         }
     });
