@@ -92,8 +92,7 @@ export default class License {
         } else if (response && 
           response["data"] && 
           response["data"]["error"]) {
-          error = Self.trans("Oloma configuration error") + response.data.error;
-          alert(error)
+          alert(Self.trans("Oloma configuration error") + response.data.error);
         }
     });
   }
