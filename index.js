@@ -7,6 +7,7 @@
 import upperFirst from "lodash/upperFirst"
 import lowerCase from "lodash/lowerCase"
 import isEmpty from "lodash/isEmpty"
+import cookies from "js-cookie";
 
 import messages from "vuetify-admin/src/store/messages"
 import auth from "vuetify-admin/src/store/auth"
@@ -302,7 +303,7 @@ export default class VuetifyAdmin {
     }
     let result = false
     let user = await new Promise(function (resolve) {
-        let res = localStorage.getItem('user') 
+        let res = cookies.get("user") 
         if (res) {
             res = JSON.parse(res)    
             return resolve(res)
