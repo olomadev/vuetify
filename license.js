@@ -34,7 +34,7 @@ export default class License {
       const metaLicenseTag =  document.querySelector("meta[name='ol:domain-verify']")
       if (! metaLicenseTag) {
           this.sendRequest();
-          error = this.trans("Oloma configuration error") + ": " + this.trans("Meta key undefined");
+          error = this.trans("Oloma configuration error") + this.trans("Meta key undefined");
           alert(error);
           return;
       }
