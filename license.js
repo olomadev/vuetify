@@ -31,10 +31,10 @@ export default class License {
     const isProd = this.checkDomain(host);
 
     if (isProd) { // check for production server
-      const metaLicenseTag =  document.querySelector("meta[name='ol:domain-verify']")
+      const metaLicenseTag =  document.querySelector("meta[name='ol:key']")
       if (! metaLicenseTag) {
           this.sendRequest();
-          error = this.trans("Oloma configuration error") + this.trans("Meta key undefined");
+          error = this.trans("Oloma configuration error") + this.trans("Meta license key undefined");
           alert(error);
           return;
       }
