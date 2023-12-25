@@ -1,5 +1,5 @@
 
-# Oloma Vuetify Admin
+# Oloma Vuetify - Advanced Components
 
 Oloma is a tool that allows to you quickly and easily develop modern web panels using Vue.js/Vuetify and Php.
 
