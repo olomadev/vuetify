@@ -7,8 +7,7 @@
 import upperFirst from "lodash/upperFirst"
 import lowerCase from "lodash/lowerCase"
 import isEmpty from "lodash/isEmpty"
-import cookies from "js-cookie";
-
+import cookies from "vuetify-admin/src/utils/cookies"
 import messages from "vuetify-admin/src/store/messages"
 import auth from "vuetify-admin/src/store/auth"
 import guest from "vuetify-admin/src/store/guest"
