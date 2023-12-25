@@ -19,6 +19,6 @@ export {
   AvatarInput,
   CheckListInput,
   CurrencyInput,
-  SheetInput
+  SheetInput,
   VueCurrencyComponent,
 };
