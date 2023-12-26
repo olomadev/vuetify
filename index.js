@@ -54,6 +54,7 @@ export default class VuetifyAdmin {
         translations = split;
       }
     }
+    this.cookieKey = JSON.parse(this.env.VITE_COOKIE_KEY_NAMES);
     /**
      * Options properties
      */
@@ -300,9 +301,10 @@ export default class VuetifyAdmin {
     if (!this.authProvider || isEmpty(permissions)) {
         return false
     }
-    let result = false
+    const Self = this;
+    let result = false;
     let user = await new Promise(function (resolve) {
-        let res = cookies.get("user") 
+        let res = cookies.get(Self.cookieKey.user) 
         if (res) {
             res = JSON.parse(res)    
             return resolve(res)
