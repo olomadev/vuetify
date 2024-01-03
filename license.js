@@ -82,7 +82,7 @@ export default class License {
         if (! response) {
           // let's show connection error in background
           // 
-          console.error(Self.trans("Oloma configuration error") + Self.trans("Failed to connect to license activation server please make sure you are connected to the internet"));
+          alert(Self.trans("Oloma configuration error") + Self.trans("Failed to connect to license activation server please make sure you are connected to the internet"));
           return;
         }
         if (response && 

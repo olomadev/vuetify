@@ -54,7 +54,7 @@ export default class VuetifyAdmin {
         translations = split;
       }
     }
-    this.cookieKey = JSON.parse(this.env.VITE_COOKIE_KEY_NAMES);
+    this.cookieKey = JSON.parse(this.env.VITE_COOKIE);
     /**
      * Options properties
      */
